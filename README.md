@@ -5,7 +5,7 @@ Neste desafio proposto para o cargo de Assistente de Devops na VHL Sistemas foi 
 - __OpenCMS (com PostgreSQL)__
 - __Nginx como proxy-reverso__
 
-A distribuição utilizada nesse labotório foi o Ubuntu 20.04 (Via WSL 2). <br>
+A distribuição utilizada nesse laboratório foi o Ubuntu 20.04 (Via WSL 2). <br>
 
 Primeiramente farei toda a instalação do ambiente de forma manual, depois disso será realizado o provisionamento com containers.
 
