@@ -230,7 +230,7 @@ sudo docker-compose up -d
 Agora o OpenCMS estará rodando localmente na URL **http://localhost/opencms/setup**
 
 ## Parte 3 - Script para atualização do `hosts`
-Nessa última parte do desafio, foi desenvolvido shell-script que adiciona uma entrada no arquivo `/etc/hosts`
+Nessa última parte do desafio, foi desenvolvido um shell-script que adiciona uma entrada no arquivo `/etc/hosts`
 ````bash
 #!/bin/bash
 
