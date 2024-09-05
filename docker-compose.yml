@@ -33,3 +33,14 @@ services:
       - /home/gabriel/desafio_vhl/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - opencms
+  update_hosts:
+    build:
+      context: .
+      dockerfile: Dockerfile.script
+    volumes:
+      - /etc/hosts:/etc/hosts
+    container_name: update-hosts-container
+    entrypoint: ["/update_hosts.sh"]
+    command: ["127.0.0.1", "opencms.potoco"]
+    depends_on:
+      - opencms
