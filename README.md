@@ -137,7 +137,7 @@ Finalizado todo o processo manual, basta acessar o setup do OpemCMS pela URL: **
 
 Nessa segunda parte do desafio, farei provisionamento de todo o ambiente com containers utilizando docker-compose para melhor organização.
 
-1. Criação do Dockerfile com o OpenCMS
+1. Criação do `Dockerfile` com o OpenCMS
 
 ```dockerfile
 FROM tomcat:9.0
