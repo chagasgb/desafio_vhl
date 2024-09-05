@@ -7,8 +7,6 @@ RUN apt-get update && apt-get install -y wget unzip && \
     
 RUN wget https://jdbc.postgresql.org/download/postgresql-42.2.23.jar -O /usr/local/tomcat/lib/postgresql.jar
 
-USER root
-
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
