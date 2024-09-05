@@ -8,9 +8,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pass
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
   opencms:
     build: .
     container_name: opencms
@@ -18,7 +19,7 @@ services:
       DB_HOST: db
       DB_PORT: 5432
     volumes:
-      - ./tomcat_data:/usr/local/tomcat/webapps
+      - tomcat_data:/usr/local/tomcat/webapps/
     ports:
       - "8080:8080"
     depends_on:
@@ -30,17 +31,10 @@ services:
     ports:
       - "80:80"
     volumes:
-      - /home/gabriel/desafio_vhl/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - opencms
-  #update_hosts:
-  #  build:
-  #    context: .
-  #    dockerfile: Dockerfile.script
-  #  volumes:
-  #    - /etc/hosts:/etc/hosts
-  #  container_name: update-hosts-container
-  #  entrypoint: ["/update_hosts.sh"]
-  #  command: ["127.0.0.1", "opencms.potoco"]
-  #  depends_on:
-  #    - opencms
+
+volumes:
+  postgres_data:
+  tomcat_data:

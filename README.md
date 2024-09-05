@@ -163,9 +163,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pass
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
   opencms:
     build: .
     container_name: opencms
@@ -173,7 +174,7 @@ services:
       DB_HOST: db
       DB_PORT: 5432
     volumes:
-      - ./tomcat_data:/usr/local/tomcat/webapps
+      - tomcat_data:/usr/local/tomcat/webapps/
     ports:
       - "8080:8080"
     depends_on:
@@ -188,8 +189,12 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - opencms
+
+volumes:
+  postgres_data:
+  tomcat_data:
 ````
-- Os dados do Tomcat e PostgreSQL estão com persistencia de tipo bind, na qual a máquina hospedeira faz o gerenciamento. Da mesma forma com o arquivo `nginx.conf`, que pode ser visualizado a seguir
+- Os dados do Tomcat e PostgreSQL estão com persistencia de tipo volume, na qual o armazanamento é gerenciado pelo Docker. Diferentemente do arquivo `nginx.conf`, que está como bind mount.
 
 ````nginx
 events {
@@ -224,5 +229,45 @@ sudo docker-compose up -d
 
 Agora o OpenCMS estará rodando localmente na URL **http://localhost/opencms/setup**
 
+## Parte 3 - Script para atualização do `hosts`
+Nessa última parte do desafio, foi desenvolvido em Bash um script que adiciona uma entrada ao arquivo `/etc/hosts` no Ubuntu.
 
+````bash
+#!/bin/bash
 
+if [ "$#" -ne 2 ]; then
+    echo "Uso: $0 ip dominio"
+    exit 1
+fi
+
+ip_address=$1
+hostname=$2
+hosts_path="/etc/hosts"
+
+update_hosts() {
+    if grep -q $hostname $hosts_path; then
+        echo "Entrada para $hostname já existe."
+    else
+        echo $ip_address $hostname >> $hosts_path
+        echo "Adicionado: $ip_address $hostname"
+        sudo systemd-resolve --flush-caches
+
+    fi
+}
+
+update_hosts
+````
+O script verifica se o IP e Dominio já existe e adiciona uma nova entrada.
+
+1. Adicione permissão de execução do script
+
+````bash
+chmod +x update-hosts.sh
+````
+
+2. Execute da seguinte forma
+
+````bash
+./update-hosts.sh 127.0.0.1 opencms.prod
+````
+Agora o setup OpenCMS estará rodando no host pela URL http://opencms.prod/
