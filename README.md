@@ -258,7 +258,7 @@ update_hosts
 ````
 O script verifica se o IP e Dominio já existe e adiciona uma nova entrada.
 
-1. Adicione permissão de execução do script
+1. Adicione permissão de execução no script
 
 ````bash
 chmod +x update-hosts.sh
