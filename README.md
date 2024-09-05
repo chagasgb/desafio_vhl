@@ -269,4 +269,4 @@ chmod +x update-hosts.sh
 ````bash
 ./update-hosts.sh 127.0.0.1 opencms.prod
 ````
-Agora o setup OpenCMS estará rodando no host pela URL http://opencms.prod/
+Agora o setup OpenCMS estará rodando no host pela URL http://opencms.prod/opencms/setup
