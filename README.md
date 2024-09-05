@@ -44,7 +44,7 @@ sudo systemctl enable postgresql
 sudo systemctl enable nginx
 ```
 
-### Download e setup do Opencms
+### Download e setup do OpenCMS
 
 6. Download do OpenCMS (versão 17.0) e descompactação
 
@@ -222,7 +222,7 @@ sudo docker-compose up -d
 ````
 <br>
 
-Agora o OpenCMS estará funcionando localmente na URL **http://localhost/opencms/setup**
+Agora o OpenCMS estará rodando localmente na URL **http://localhost/opencms/setup**
 
 
 
