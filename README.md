@@ -189,7 +189,7 @@ services:
     depends_on:
       - opencms
 ````
-- Os dados do Tomcat e PostgreSQL estão com persistencia de tipo bind, na qual máquina hospedeira que faz o gerenciamento. Da mesma forma com o arquivo `nginx.conf`, que pode ser visualizado a seguir
+- Os dados do Tomcat e PostgreSQL estão com persistencia de tipo bind, na qual a máquina hospedeira faz o gerenciamento. Da mesma forma com o arquivo `nginx.conf`, que pode ser visualizado a seguir
 
 ````nginx
 events {
